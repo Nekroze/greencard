@@ -55,6 +55,6 @@ def main(clargs=None):
             try:
                 test(card)
             except AssertionError:
-                print("{0} failed {1}".format(card, test.__name__))
+                print("{0} failed {1}".format(card.__repr__(), test.__name__))
                 failures += 1
     sys.exit(failures)
