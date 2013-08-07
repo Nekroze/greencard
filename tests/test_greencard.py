@@ -12,7 +12,7 @@ import os
 import shutil
 import unittest
 
-from greencard import greencard
+from greencard import decorator
 
 
 class TestGreencard(unittest.TestCase):
