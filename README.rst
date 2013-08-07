@@ -23,22 +23,11 @@ Install greencard::
 
     pip install greencard
 
-Then you can use the ``GreenCardTest`` decorator on your unittests to provide
-them with each and every card in the library::
-
-    from unittest import TestCase
-    from greencard.decorator import GreenCardTest
-
-    class CardTests(TestCase):
-        @GreenCardTest('mylibrary.lbr')
-        def execute(self, card):
-            self.assertTrue(0 < card.code <= 1000)
-
-The above will test each and every card in the database stored at
-``mylibrary.lbr`` and ensure that their code is higher then 0 but no higher
-then 1000.
+Then you can use the ``greencard`` command line test runner to descover and run
+card tests defined as all ``.py`` files in the test directory from where the
+runner is executed. For more information see the usage documentation page.
 
 Features
 --------
 
-* Unittest decorator that provides a database of cards one at a time on test.
+* A custom testing framework and test runner designed specifically for cards.

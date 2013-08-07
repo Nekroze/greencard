@@ -2,18 +2,23 @@
 Usage
 ========
 
-A good way to use **greencard** to test your card library is to use the
-``GreenCardTest`` decorator on your unittests to provide them with each and
-every card in the library::
+In order to use greencard we first need to create our tests.
 
-    from unittest import TestCase
-    from greencard.decorator import GreenCardTest
+In a directory called tests every ``.py`` file will be loaded by the
+``greencard`` test runner. For example to check for a valid code we could have
+the file tests/code.py might look like this::
 
-    class CardTests(TestCase):
-        @GreenCardTest('mylibrary.lbr')
-        def execute(self, card):
-            self.assertTrue(0 < card.code <= 1000)
+    from greencard import greencard
 
-The above will test each and every card in the database stored at
-``mylibrary.lbr`` and ensure that their code is higher then 0 but no higher
-then 1000.
+    
+    @greencard
+    def validate_code(card):
+        assert 0 < card.code <= 1000
+
+Then by calling the following::
+
+    $ greencard mylibrary.lbr
+
+**greencard** will look in the tests directory and load the ``validate_code``
+test that will be called on each card in the library to ensure that all cards
+have a code inbetween 1 and 1000.

@@ -17,26 +17,29 @@ def greencard(func):
     return Wrapped
 
 
-def descovery():
-    """
-    Descover and load all greencard tests.
-    """
-    pass
+def descovery(testdir):
+    """Descover and load greencard tests."""
+    import os
+    from glob import glob
+    import importlib
+
+    for testpath in glob(os.path.join(testdir, "*.py")):
+        importlib.import_module(testpath)
 
 
 def main(clargs=None):
-    """
-    Command line entry point.
-    """
+    """Command line entry point."""
     from argparse import ArgumentParser
     from librarian.library import Library
 
     parser = ArgumentParser(
         description="A test runner for each card in a librarian library.")
     parser.add_argument("library", help="Library database")
+    parser.add_argument("-t", "--tests", default="./tests/",
+                        help="Test directory")
     args = parser.parse_args(clargs)
 
-    descovery()
+    descovery(args.tests)
 
     lib = Library(args.library)
     failures = 0
