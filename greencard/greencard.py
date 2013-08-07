@@ -20,12 +20,19 @@ def greencard(func):
 
 def descovery(testdir):
     """Descover and load greencard tests."""
-    import os
+    from os.path import splitext, basename, join, exists
+    if not exists(testdir):
+        return None
+
+    import sys
     from glob import glob
     import importlib
 
-    for testpath in glob(os.path.join(testdir, "*.py")):
-        importlib.import_module(testpath)
+    sys.path.append(testdir)
+
+    for testpath in glob(join(testdir, "*.py")):
+        name, _ = splitext(basename(testpath))
+        importlib.import_module(name)
 
 
 def main(clargs=None):
