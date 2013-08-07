@@ -20,8 +20,8 @@ def greencard(func):
 
 def descovery(testdir):
     """Descover and load greencard tests."""
-    from os.path import splitext, basename, join, exists
-    if not exists(testdir):
+    from os.path import splitext, basename, join, exists, dirname, isdir
+    if not testdir or not exists(testdir) or not isdir(testdir):
         return None
 
     import sys
