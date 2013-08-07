@@ -23,14 +23,14 @@ Install greencard::
 
     pip install greencard
 
-Then you can use the ``GreenCard`` decorator on your unittests to provide them
-with each and every card in the library::
+Then you can use the ``GreenCardTest`` decorator on your unittests to provide
+them with each and every card in the library::
 
     from unittest import TestCase
-    from greencard.decorator import GreenCard
+    from greencard.decorator import GreenCardTest
 
     class CardTests(TestCase):
-        @GreenCard('mylibrary.lbr')
+        @GreenCardTest('mylibrary.lbr')
         def execute(self, card):
             self.assertTrue(0 < card.code <= 1000)
 

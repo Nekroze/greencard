@@ -2,7 +2,7 @@ from functools import wraps
 from librarian.library import Library
 
 
-class GreenCard(object):
+class GreenCardTest(object):
     """
     A decorator for providing a unittesting function/method with every card in
     a librarian card library database when it is called.
