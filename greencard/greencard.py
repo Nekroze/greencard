@@ -32,6 +32,14 @@ def descovery(testdir):
         imp.load_source('tests.{0}'.format(name), testpath)
 
 
+RESULTS = """
+Results:
+{0} tests
+{1} cards
+{2} passes
+{3} failures"""
+
+
 def main(clargs=None):
     """Command line entry point."""
     from argparse import ArgumentParser
@@ -48,13 +56,22 @@ def main(clargs=None):
     descovery(args.tests)
 
     library = Library(args.library)
+    passes = 0
     failures = 0
+    cardcount = 0
 
     for card in library.retrieve_all():
+        cardcount += 1
+        failed = False
         for test in TESTS:
             try:
                 test(card)
             except AssertionError:
                 print("{0} failed {1}".format(card.__repr__(), test.__name__))
-                failures += 1
+                failed = True
+        if failed:
+            failures += 1
+        else:
+            passes += 1
+    print(RESULTS.format(len(TESTS), cardcount, passes, failures))
     sys.exit(failures)
