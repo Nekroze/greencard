@@ -52,7 +52,7 @@ def main(clargs=None):
     parser = ArgumentParser(
         description="A test runner for each card in a librarian library.")
     parser.add_argument("library", help="Library database")
-    parser.add_argument("-t", "--tests", default="./tests/",
+    parser.add_argument("-t", "--tests", default="test/",
                         help="Test directory")
     args = parser.parse_args(clargs)
 
