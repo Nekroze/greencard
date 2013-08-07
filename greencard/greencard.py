@@ -20,15 +20,16 @@ def greencard(func):
 
 def descovery(testdir):
     """Descover and load greencard tests."""
-    from os.path import join, exists, isdir
+    from os.path import join, exists, isdir, splitext, basename
     if not testdir or not exists(testdir) or not isdir(testdir):
         return None
-    
+
     from glob import glob
     import imp
 
     for testpath in glob(join(testdir, "*.py")):
-        imp.load_source(testpath)
+        name, _ = splitext(basename(testpath))
+        imp.load_source('tests.{0}'.format(name), testpath)
 
 
 def main(clargs=None):
