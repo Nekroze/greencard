@@ -1,3 +1,4 @@
+"""Greencard implementation."""
 from functools import wraps
 
 
@@ -10,11 +11,11 @@ def greencard(func):
     a librarian card library database when it is called.
     """
     @wraps(func)
-    def Wrapped(*args, **kwargs):
+    def wrapped(*args, **kwargs):
         """Transparent wrapper."""
         return func(*args, **kwargs)
-    TESTS.append(Wrapped)
-    return Wrapped
+    TESTS.append(wrapped)
+    return wrapped
 
 
 def descovery(testdir):
@@ -31,6 +32,7 @@ def main(clargs=None):
     """Command line entry point."""
     from argparse import ArgumentParser
     from librarian.library import Library
+    import sys
 
     parser = ArgumentParser(
         description="A test runner for each card in a librarian library.")
@@ -41,7 +43,7 @@ def main(clargs=None):
 
     descovery(args.tests)
 
-    lib = Library(args.library)
+    library = Library(args.library)
     failures = 0
 
     for card in library.retrieve_all():
@@ -51,4 +53,4 @@ def main(clargs=None):
             except AssertionError:
                 print("{0} failed {1}".format(card, test.__name__))
                 failures += 1
-    return failure
+    sys.exit(failures)

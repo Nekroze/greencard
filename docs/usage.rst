@@ -8,10 +8,10 @@ In a directory called tests every ``.py`` file will be loaded by the
 ``greencard`` test runner. For example to check for a valid code we could have
 the file tests/code.py might look like this::
 
-    from greencard import greencard
+    import greencard
 
     
-    @greencard
+    @greencard.test
     def validate_code(card):
         assert 0 < card.code <= 1000
 
