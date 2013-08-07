@@ -36,7 +36,7 @@ setup(
     package_dir={'greencard': 'greencard'},
     include_package_data=True,
     install_requires=[
-        'librarian>=0.2.5',
+        'librarian>=0.2.6',
     ],
     license="MIT",
     zip_safe=False,
