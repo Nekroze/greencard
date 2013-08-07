@@ -38,7 +38,7 @@ def main(clargs=None):
 
     descovery()
 
-    lib = Library(args.library))
+    lib = Library(args.library)
     failures = 0
 
     for card in library.retrieve_all():
