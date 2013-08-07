@@ -11,9 +11,6 @@ greencard
 .. image:: https://pypip.in/d/greencard/badge.png
         :target: https://crate.io/packages/greencard?version=latest
 
-
-Cookiecutter template for a Python package.
-
 Documentation
 -------------
 
