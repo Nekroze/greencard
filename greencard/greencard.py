@@ -88,10 +88,11 @@ def execute_tests(library):
 
 RESULTS = """
 Results:
-{0} tests
-{1} cards
-{2} passes
-{3} failures"""
+{0} library tests
+{1} card tests
+{2} cards
+{3} passes
+{4} failures"""
 
 
 def main(clargs=None):
@@ -111,6 +112,6 @@ def main(clargs=None):
 
     library = Library(args.library)
     cardcount, passes, failures = execute_tests(library)
-    print(RESULTS.format(len(TESTS) + len(SINGLES), cardcount, passes, failures))
-
+    print(RESULTS.format(len(SINGLES), len(TESTS), cardcount, passes,
+                         failures))
     sys.exit(failures)
