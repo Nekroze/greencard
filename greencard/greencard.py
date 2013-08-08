@@ -49,6 +49,43 @@ def descovery(testdir):
             imp.load_source(modulepath, path)
 
 
+def execute_tests(library):
+    """
+    Runs the library through each single test and each card in the library
+    through each card test then returns ``(cardcount, passes, failures)``.
+    """
+    passes = 0
+    failures = 0
+    cardcount = 0
+
+    for test in SINGLES:
+        failed = False
+        try:
+            test(library)
+        except AssertionError:
+            print("Library failed {1}".format(test.__name__))
+            failed = True
+        if failed:
+            failures += 1
+        else:
+            passes += 1
+
+    for card in library.retrieve_all():
+        cardcount += 1
+        failed = False
+        for test in TESTS:
+            try:
+                test(card)
+            except AssertionError:
+                print("{0} failed {1}".format(card.__repr__(), test.__name__))
+                failed = True
+        if failed:
+            failures += 1
+        else:
+            passes += 1
+    return cardcount, passes, failures
+
+
 RESULTS = """
 Results:
 {0} tests
@@ -73,22 +110,7 @@ def main(clargs=None):
     descovery(args.tests)
 
     library = Library(args.library)
-    passes = 0
-    failures = 0
-    cardcount = 0
+    cardcount, passes, failures = execute_tests(library)
+    print(RESULTS.format(len(TESTS) + len(SINGLES), cardcount, passes, failures))
 
-    for card in library.retrieve_all():
-        cardcount += 1
-        failed = False
-        for test in TESTS:
-            try:
-                test(card)
-            except AssertionError:
-                print("{0} failed {1}".format(card.__repr__(), test.__name__))
-                failed = True
-        if failed:
-            failures += 1
-        else:
-            passes += 1
-    print(RESULTS.format(len(TESTS), cardcount, passes, failures))
     sys.exit(failures)
