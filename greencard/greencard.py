@@ -63,7 +63,7 @@ def execute_tests(library):
         try:
             test(library)
         except AssertionError:
-            print("Library failed {1}".format(test.__name__))
+            print("Library failed {0}".format(test.__name__))
             failed = True
         if failed:
             failures += 1
