@@ -20,7 +20,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='greencard',
     version=greencard.__version__,
-    description='Cookiecutter template for a Python package.',
+    description='A unittest framework and runner for librarian card databases.',
     long_description=readme + '\n\n' + history,
     author='Taylor "Nekroze" Lawson',
     author_email='nekroze@eturnilnetwork.com',
