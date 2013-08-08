@@ -3,6 +3,7 @@ from functools import wraps
 
 
 TESTS = []
+SINGLES = []
 
 
 def greencard(func):
@@ -15,6 +16,19 @@ def greencard(func):
         """Transparent wrapper."""
         return func(*args, **kwargs)
     TESTS.append(wrapped)
+    return wrapped
+
+
+def single(func):
+    """
+    A decorator for providing a unittest with a library and have it called only
+    once.
+    """
+    @wraps(func)
+    def wrapped(*args, **kwargs):
+        """Transparent wrapper."""
+        return func(*args, **kwargs)
+    SINGLES.append(wrapped)
     return wrapped
 
 
