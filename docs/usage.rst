@@ -11,7 +11,7 @@ the file tests/code.py might look like this::
     import greencard
 
     
-    @greencard.test
+    @greencard.card
     def validate_code(card):
         assert 0 < card.code <= 1000
 
@@ -22,3 +22,7 @@ Then by calling the following::
 **greencard** will look in the tests directory and load the ``validate_code``
 test that will be called on each card in the library to ensure that all cards
 have a code inbetween 1 and 1000.
+
+There is also a way to provide library wide tests that are run only once by
+doing the same as above but using ``@greencard.library`` decorator and having a
+library argument.

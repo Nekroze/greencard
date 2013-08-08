@@ -6,7 +6,7 @@ TESTS = []
 SINGLES = []
 
 
-def greencard(func):
+def card(func):
     """
     A decorator for providing a unittesting function/method with every card in
     a librarian card library database when it is called.
@@ -19,7 +19,7 @@ def greencard(func):
     return wrapped
 
 
-def single(func):
+def library(func):
     """
     A decorator for providing a unittest with a library and have it called only
     once.
