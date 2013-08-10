@@ -91,8 +91,8 @@ Results:
 {0} library tests
 {1} card tests
 {2} cards
-{3} passes
-{4} failures"""
+{3} passed
+{4} failed"""
 
 
 def main(clargs=None):
